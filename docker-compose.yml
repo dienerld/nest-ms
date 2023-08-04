@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  nest-ms:
+    container_name: nest-ms
+    build:
+      context: ./greeting-service
+      dockerfile: Dockerfile
+
+    volumes:
+      - "./greeting-service:/app"
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - rabbitmq
+
+  nest-client:
+    container_name: nestjs-client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./client:/app"
+    environment:
+      - NODE_ENV=development
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - "rabbitmq-data:/var/lib/rabbitmq"
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
+volumes:
+  rabbitmq-data:
