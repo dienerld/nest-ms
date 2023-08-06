@@ -8,8 +8,8 @@ import { AppService } from './app.service';
     ClientsModule.register([
       {name: 'GREETING_SERVICE',transport: Transport.RMQ,
       options : {
-        urls: ['amqp://admin:admin@localhost:5672'],
-        queue: 'greeting_queue',
+        urls: ['amqp://admin:admin@rabbitmq:5672'],
+        queue: 'test_dnr',
       }
     }
     ])

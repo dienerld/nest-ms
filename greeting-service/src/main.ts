@@ -8,11 +8,13 @@ async function bootstrap() {
     {
       transport: Transport.RMQ,
       options: {
-        urls: ['amqp://admin:admin@localhost:5672'],
-        queue: 'greeting_queue',
+        urls: ['amqp://admin:admin@rabbitmq:5672'],
+        queue: 'test_dnr',
       }
     }
   )
+  console.log("Connected");
+
   await app.listen();
 }
 bootstrap();

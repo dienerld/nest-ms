@@ -13,8 +13,5 @@ RUN yarn install
 # Copie todo o código-fonte para o contêiner
 COPY . .
 
-# Exponha a porta que o aplicativo NestJS está ouvindo
-EXPOSE 3000
 
-
-CMD [ "tail", "-f", "/dev/null" ]
+CMD [ "yarn",  "start:dev" ]
